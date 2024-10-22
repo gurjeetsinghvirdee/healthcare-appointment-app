@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { Client, Databases } from 'appwrite';
 
 const client = new Client();
 client
-    .setEndpoint(process.env.YOUR_APPWRITE_ENDPOINT!)
-    .setProject(process.env.YOUR_APPWRITE_PROJECT_ID!)
+    .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
+    .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID!)
 
 const databases = new Databases(client)
 
@@ -17,7 +17,7 @@ export default function Appointments() {
 
     const handleAppointment = async () => {
         try {
-            await databases.createDocument(process.env.YOUR_APPWRITE_DATABASE_ID!, 'appointments', 'unique()', {
+            await databases.createDocument(process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!, 'appointments', 'unique()', {
                 date,
                 doctor
             });

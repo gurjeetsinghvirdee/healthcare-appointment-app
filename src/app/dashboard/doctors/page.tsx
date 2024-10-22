@@ -3,8 +3,8 @@ import { Client, Databases } from 'appwrite';
 
 const client = new Client();
 client
-    .setEndpoint(process.env.YOUR_APPWRITE_ENDPOINT!)
-    .setProject(process.env.YOUR_APPWRITE_PROJECT_ID!)
+    .setEndpoint(process.env.NEXT_APPWRITE_APPWRITE_ENDPOINT!)
+    .setProject(process.env.NEXT_APPWRITE_APPWRITE_PROJECT_ID!)
 
 const databases = new Databases(client)
 
@@ -15,7 +15,7 @@ export default function Doctors() {
 
     const handleDoctor = async () => {
         try {
-            await databases.createDocument(process.env.YOUR_APPWRITE_DATABASE_ID!, 'doctors', 'unique()'
+            await databases.createDocument(process.env.NEXT_APPWRITE_APPWRITE_DATABASE_ID!, 'doctors', 'unique()'
             , {
                 name,
                 specialty

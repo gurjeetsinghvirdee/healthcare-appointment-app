@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-background text-primary;
+}
+
+button {
+  @apply bg-primary text-light hover:bg-secondary transition;
+}
+
+input, textarea {
+  @apply border-secondary focus:border-primary;
+}
