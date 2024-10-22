@@ -3,13 +3,21 @@
 @tailwind utilities;
 
 body {
-  @apply bg-background text-primary;
+  @apply bg-buttercream text-gray;
 }
 
 button {
-  @apply bg-primary text-light hover:bg-secondary transition;
+  @apply bg-galaxy-blue text-white hover:bg-clay transition;
 }
 
 input, textarea {
-  @apply border-secondary focus:border-primary;
+  @apply border-gray focus:border-galaxy-blue;
+}
+
+h2, h3 {
+  @apply text-galaxy-blue;
+}
+
+p {
+  @apply text-gray;
 }

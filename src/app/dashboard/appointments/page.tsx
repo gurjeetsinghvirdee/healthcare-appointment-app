@@ -1,59 +1,55 @@
+"use client";
+
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { Client, Databases } from 'appwrite';
 
 const client = new Client();
-client
-    .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
-    .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID!)
+client.setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
+  .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID!);
 
-const databases = new Databases(client)
+const databases = new Databases(client);
 
 export default function Appointments() {
-    const [date, setDate] = useState('')
-    const [doctor, setDoctor] = useState('')
-    const [success, setSuccess] = useState('')
-    const router = useRouter()
+  const [date, setDate] = useState('');
+  const [doctor, setDoctor] = useState('');
+  const [success, setSuccess] = useState('');
 
-    const handleAppointment = async () => {
-        try {
-            await databases.createDocument(process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!, 'appointments', 'unique()', {
-                date,
-                doctor
-            });
-            setSuccess('Appointment scheduled successfully')
-            router.push('/dashboard');
-        } catch (error) {
-            console.error(error)
-            setSuccess('Failed to schedule appointment')
-        }
-    };
+  const handleAppointment = async () => {
+    try {
+      await databases.createDocument(process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!, 'appointments', 'unique()', { date, doctor });
+      setSuccess('Appointment scheduled successfully');
+    } catch (error) {
+      console.error(error);
+      setSuccess('Failed to schedule appointment');
+    }
+  };
 
-    return (
-        <div className='min-h-screen flex item-center justify-center bg-gray-100'>
-            <div className='bg-white p-8 rounded shadow-md'>
-                <h2 className='text-2xl mb-4'>Schedule Appointment</h2>
-                <input 
-                    type='text'
-                    placeholder='Doctor Name'
-                    value={doctor}
-                    onChange={(e) => setDoctor(e.target.value)}
-                    className='w-full p-2 mb-4 border border-gray-300 rounded'
-                />
-                <input 
-                    type='date'
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    className='w-full p-2 mb-4 border border-gray-300 rounded'
-                />
-                <button
-                    onClick={handleAppointment}
-                    className="bg-blue-500 text-white p-2 rounded mt-2"
-                >
-                    Schedule Appointment
-                </button>
-                {success && <p className='mt-2 text-green-500'>{success}</p>}
-            </div>
-        </div>
-    );
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-buttercream">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl">
+        <h2 className="text-3xl font-bold text-clay mb-4">Schedule an Appointment</h2>
+        <p className="text-gray-700 mb-6">Book your health appointment with ease.</p>
+        <input
+          type="text"
+          placeholder="Doctor Name"
+          value={doctor}
+          onChange={(e) => setDoctor(e.target.value)}
+          className="mb-3 p-3 border border-gray-300 rounded w-full focus:border-galaxy-blue"
+        />
+        <input
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          className="mb-3 p-3 border border-gray-300 rounded w-full focus:border-galaxy-blue"
+        />
+        <button
+          onClick={handleAppointment}
+          className="bg-galaxy-blue text-white p-3 rounded-lg w-full mt-4 hover:bg-clay transition"
+        >
+          Schedule Appointment
+        </button>
+        {success && <p className="mt-2 text-green-500">{success}</p>}
+      </div>
+    </div>
+  );
 }

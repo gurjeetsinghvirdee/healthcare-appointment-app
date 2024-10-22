@@ -1,6 +1,4 @@
-import type { Config } from 'tailwindcss';
-
-const config: Config = {
+module.exports = {
   content: [
     './src/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
@@ -8,15 +6,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: '#5680E9',
-        secondary: '#84CEEB',
-        accent: '#5AB9EA',
-        background: '#C1C8E4',
-        light: '#88D0E0',
+        'soft-yellow': '#CBB26A',
+        'buttercream': '#F7E8D3',
+        'clay': '#C99383',
+        'gray': '#AAABAB',
+        'galaxy-blue': '#223651',
       },
     },
   },
   plugins: [],
-};
-
-export default config;
+}
